@@ -1,0 +1,11 @@
+{"input": "", "expect": "", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "XYZ", "expect": "XYZ", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "AABBBCCCC", "expect": "2A3B4C", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB", "expect": "12WB12W3B24WB", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "  hsqq qww  ", "expect": "2 hs2q q2w2 ", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "aabbbcccc", "expect": "2a3b4c", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "2A3B4C", "expect": "2A3B4C", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "12WB12W3B24WB", "expect": "12WB12W3B24WB", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "2 hs2q q2w2 ", "expect": "2 hs2q q2w2 ", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "2a3b4c", "expect": "2a3b4c", "raised": false, "task": "run-length-encoding", "lang": "go"}
+{"input": "zzz ZZ  zZ", "expect": "3z 2Z2 zZ", "raised": false, "task": "run-length-encoding", "lang": "go"}

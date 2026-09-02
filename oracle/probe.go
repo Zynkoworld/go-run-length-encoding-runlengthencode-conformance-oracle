@@ -1,0 +1,76 @@
+package main
+
+import (
+	__json "encoding/json"
+	__fmt "fmt"
+)
+
+
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func RunLengthEncode(s string) string {
+	count := 1
+	var output string
+	for i, c := range s {
+		if i != 0 {
+			if rune(s[i-1]) == c {
+				count++
+			} else {
+				count, output = 1, output+encode(count, i, s)
+			}
+		}
+	}
+	if s != "" {
+		output += encode(count, len(s), s)
+	}
+	return output
+}
+
+func RunLengthDecode(s string) string {
+	count := 1
+	var stringCount, output string
+	for _, c := range s {
+		if _, err := strconv.Atoi(string(c)); err == nil {
+			stringCount += string(c)
+		} else {
+			if stringCount != "" {
+				count, _ = strconv.Atoi(stringCount)
+			}
+			for j := 0; j < count; j++ {
+				output += string(c)
+			}
+			count = 1
+			stringCount = ""
+		}
+	}
+	return output
+}
+
+func encode(count, i int, s string) string {
+	if count > 1 {
+		return fmt.Sprintf("%d%c", count, s[i-1])
+	}
+	return fmt.Sprintf("%c", s[i-1])
+}
+
+type R struct {
+	Ok bool        `json:"ok"`
+	V  interface{} `json:"v"`
+}
+
+func main() {
+	inputs := []string{"", "XYZ", "AABBBCCCC", "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB", "  hsqq qww  ", "aabbbcccc", "2A3B4C", "12WB12W3B24WB", "2 hs2q q2w2 ", "2a3b4c", "zzz ZZ  zZ"}
+	out := []R{}
+	for _, x := range inputs {
+		func() {
+			defer func() { if r := recover(); r != nil { out = append(out, R{false, __fmt.Sprint(r)}) } }()
+			out = append(out, R{true, RunLengthEncode(x)})
+		}()
+	}
+	b, _ := __json.Marshal(map[string]interface{}{"out": out})
+	__fmt.Println(string(b))
+}
